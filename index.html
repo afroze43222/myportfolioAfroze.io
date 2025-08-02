@@ -1,0 +1,627 @@
+<!-- I'll create a professional cybersecurity portfolio for you with all the requested sections. I'll use a clean, modern design with a dark theme that's common in cybersecurity portfolios, and ensure it's fully responsive.
+
+
+1. Structure: Will create a single-page portfolio with smooth scrolling navigation
+2. Design: Dark theme with accent colors (common in security fields)
+3. Sections: 
+   - Hero section with name and title
+   - About me with professional summary
+   - Skills section with categorized technical skills
+   - Certifications in a card layout
+   - Projects/Engagements with descriptions
+   - Achievements as highlight cards
+   - Contact form 
+   - Downloadable resume CTA
+4. Technical: Pure HTML/CSS/JS, no external dependencies except Tailwind for rapid styling
+5. Features: 
+   - Responsive navbar
+   - Smooth scrolling
+   - Download button for resume
+   - Contact form (will need backend integration later)
+
+
+Here's the complete portfolio:
+
+`portfolio.html`
+```html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Afroze | Cybersecurity Professional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #c026d3 100%);
+        }
+        .skill-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #1e293b;
+            transition: all 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+        .cert-card {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40%;
+            height: 3px;
+            background: #3b82f6;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                    <span class="text-white font-bold">MA</span>
+                </div>
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">Mohammed Afroze</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-slate-300 hover:text-white">About</a>
+                <a href="#skills" class="nav-link text-slate-300 hover:text-white">Skills</a>
+                <a href="#certifications" class="nav-link text-slate-300 hover:text-white">Certifications</a>
+                <a href="#projects" class="nav-link text-slate-300 hover:text-white">Projects</a>
+                <a href="#achievements" class="nav-link text-slate-300 hover:text-white">Achievements</a>
+                <a href="#contact" class="nav-link text-slate-300 hover:text-white">Contact</a>
+            </div>
+            <button class="md:hidden text-slate-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20">
+        <div class="max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="inline-block mb-2">Hi, I'm</span>
+                    <span class="bg-clip-text text-transparent hero-gradient">Mohammed Afroze</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-slate-400 mb-8">
+                    Information Security Analyst & <span class="text-blue-400">Penetration Tester</span>
+                </h2>
+                <p class="text-lg text-slate-400 mb-8 max-w-lg">
+                    I help organizations identify and fix security vulnerabilities before attackers can exploit them. 
+                    With expertise in VAPT, offensive security, and security research.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors">
+                        Contact Me
+                    </a>
+                    <a href="#resume-download"class="px-6 py-3 border border-blue-600 text-blue-400 hover:bg-slate-800/50 rounded-md font-medium transition-colors">
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600/30">
+                        <img src="afroze.jpg" alt="Professional portrait of Mohammed Afroze, Information Security Analyst, wearing formal attire with a confident expression" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-slate-800 rounded-lg px-4 py-2 border border-slate-700 shadow-lg">
+                        <p class="text-sm text-green-400 code-font"># Security Analyst</p>
+                    </div>
+                    <div class="absolute -top-6 -left-6 bg-slate-800 rounded-lg px-4 py-2 border border-slate-700 shadow-lg">
+                        <p class="text-sm text-purple-400 code-font"># Penetration Tester</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 section-title">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-slate-400 mb-6 text-lg">
+                        I'm an Information Security Analyst and Penetration Tester with over 1 year of hands-on experience 
+                        in Vulnerability Assessment and Penetration Testing (VAPT) for both web applications and networks.
+                    </p>
+                    <p class="text-slate-400 mb-6 text-lg">
+                        My expertise focuses on offensive security methodologies, identifying and exploiting vulnerabilities 
+                        to help organizations strengthen their security posture. I'm passionate about security research and 
+                        staying ahead of emerging threats.
+                    </p>
+                    <p class="text-slate-400 text-lg">
+                        When I'm not hacking systems (ethically, of course), I participate in bug bounty programs, 
+                        contribute to open-source security projects, and mentor aspiring cybersecurity professionals.
+                    </p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-6">Technical Proficiencies</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-slate-400 mb-2">Web Application Security</p>
+                            <div class="w-full bg-slate-700 rounded-full h-2.5">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-400 mb-2">Network Penetration Testing</p>
+                            <div class="w-full bg-slate-700 rounded-full h-2.5">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-400 mb-2">Security Research</p>
+                            <div class="w-full bg-slate-700 rounded-full h-2.5">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-400 mb-2">Red Teaming</p>
+                            <div class="w-full bg-slate-700 rounded-full h-2.5">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 section-title">Technical Skills</h2>
+            
+            <h3 class="text-xl font-semibold mb-6 text-blue-400">Core Competencies</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Web App Pen Testing</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Network Security</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Vulnerability Research</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Threat Modeling</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-6 text-blue-400">Tools & Technologies</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Burp Suite</p>
+                    <p class="text-sm text-slate-400">Web Testing</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Metasploit</p>
+                    <p class="text-sm text-slate-400">Exploitation</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Nmap</p>
+                    <p class="text-sm text-slate-400">Network Scanning</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">OWASP ZAP</p>
+                    <p class="text-sm text-slate-400">Security Testing</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Wireshark</p>
+                    <p class="text-sm text-slate-400">Traffic Analysis</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Kali Linux</p>
+                    <p class="text-sm text-slate-400">Security OS</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">John the Ripper</p>
+                    <p class="text-sm text-slate-400">Password Cracking</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Nessus</p>
+                    <p class="text-sm text-slate-400">Vulnerability Scan</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Aircrack-ng</p>
+                    <p class="text-sm text-slate-400">Wireless Testing</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">SQLmap</p>
+                    <p class="text-sm text-slate-400">SQL Injection</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-6 text-blue-400">Programming & Scripting</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Python</p>
+                    <p class="text-sm text-slate-400">Security Tools</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">Bash</p>
+                    <p class="text-sm text-slate-400">Automation</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">JavaScript</p>
+                    <p class="text-sm text-slate-400">Web Exploits</p>
+                </div>
+                <div class="skill-card p-4 rounded-lg">
+                    <p class="font-medium">SQL</p>
+                    <p class="text-sm text-slate-400">Database Security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-slate-900">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-12 section-title">Certifications</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      
+      <!-- KLEAP Certified Penetration Tester -->
+      <div class="cert-card p-8 rounded-xl">
+        <div class="flex items-start mb-4">
+          <div class="bg-blue-600/20 p-3 rounded-lg mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold">KLEAP Certified Penetration Tester</h3>
+            <p class="text-blue-400 mb-2">KLEAP Security</p>
+            <p class="text-slate-400">Comprehensive practical certification covering modern penetration testing methodologies and tools.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Introduction to Cybersecurity -->
+      <div class="cert-card p-8 rounded-xl">
+        <div class="flex items-start mb-4">
+          <div class="bg-blue-600/20 p-3 rounded-lg mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold">Introduction to Cybersecurity</h3>
+            <p class="text-blue-400 mb-2">Cisco Networking Academy</p>
+            <p class="text-slate-400">Fundamental cybersecurity concepts including threats, vulnerabilities, and defense strategies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ethical Hacker Certificate -->
+      <div class="cert-card p-8 rounded-xl">
+        <div class="flex items-start mb-4">
+          <div class="bg-blue-600/20 p-3 rounded-lg mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold">Ethical Hacker Certificate</h3>
+            <p class="text-blue-400 mb-2">Cisco</p>
+            <p class="text-slate-400">Certified in ethical hacking concepts, tools, and techniques through Cisco’s cybersecurity program, showcasing strong skills in identifying and mitigating threats.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 section-title">Projects & Engagements</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+                    <div class="h-48 bg-slate-800 relative">
+                        <img src="myportfolio.webp" alt="Screenshot of a security assessment dashboard showing vulnerability reports and network scan results" class="w-full h-full object-cover" />
+                        <div class="absolute bottom-4 left-4 bg-blue-600/90 text-white px-3 py-1 rounded-md text-sm">
+                            Bug Bounty
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Web Application Security Assessment</h3>
+                        <p class="text-slate-400 mb-4">Conducted comprehensive penetration testing for multiple web applications, identifying and reporting critical vulnerabilities to improve security posture.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">SQL Injection</span>
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">XSS</span>
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">CSRF</span>
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Broken Authentication</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium">View Report →</a>
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+                    <div class="h-48 bg-slate-800 relative">
+                        <img src="mypenetrationtester.webp" alt="Network security operations center with multiple monitors showing scanning tools and vulnerability assessments" class="w-full h-full object-cover" />
+                        <div class="absolute bottom-4 left-4 bg-purple-600/90 text-white px-3 py-1 rounded-md text-sm">
+                            Red Team
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Internal Network Penetration Test</h3>
+                        <p class="text-slate-400 mb-4">Performed authorized penetration test on corporate network, identifying misconfigurations and security weaknesses in Active Directory and internal services.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Active Directory</span>
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Privilege Escalation</span>
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Lateral Movement</span>
+                            <span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs">Persistence</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium">View Report →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">Security Research - New Attack Vector</h3>
+                    <p class="text-slate-400 mb-4">Discovered and documented a novel attack vector in a popular CMS platform that could lead to RCE.</p>
+                    <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium">Read Paper →</a>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">Bug Bounty Hunter</h3>
+                    <p class="text-slate-400 mb-4">Submitted multiple valid vulnerabilities to bug bounty programs including HackerOne, Bugcrowd, and company-specific programs.</p>
+                    <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium">View Profile →</a>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">CTF Player</h3>
+                    <p class="text-slate-400 mb-4">Regular participant in CTF competitions, solving challenges in web exploitation, reverse engineering, and cryptography.</p>
+                    <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium">View Profile →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 section-title">Achievements</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-blue-900/50 to-blue-600/20 border border-blue-600/30 rounded-xl p-8">
+                    <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Winner of HackerOne School CTF Challenge</h3>
+                    <p class="text-slate-300">Secured first place among 200+ participants in a 48-hour CTF focused on web security and reverse engineering challenges.</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-900/50 to-purple-600/20 border border-purple-600/30 rounded-xl p-8">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Hackathon Winner (KLEAP)</h3>
+                    <p class="text-slate-300">Led team to victory in security-themed hackathon by developing an innovative security monitoring tool for small businesses.</p>
+                </div>
+                <div class="bg-gradient-to-br from-sky-900/50 to-sky-600/20 border border-sky-600/30 rounded-xl p-8">
+                    <div class="w-12 h-12 bg-sky-600/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">VAPT Internship Experience</h3>
+                    <p class="text-slate-300">Completed intensive internship conducting real-world vulnerability assessments and penetration tests for enterprise clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 section-title">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Let's talk security</h3>
+                    <p class="text-slate-400 mb-8 max-w-md">
+                        Interested in discussing a security assessment, collaboration opportunity, 
+                        or just want to connect? Feel free to reach out via the form or directly through my social media.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-slate-800 rounded-md flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400">Email</p>
+                                <p class="font-medium">Afrozesubhan.h2@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-slate-800 rounded-md flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400">Phone</p>
+                                <p class="font-medium">+91 8978072164</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-slate-800 rounded-md flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400">Location</p>
+                                <p class="font-medium">Bangalore, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-lg font-medium mb-4">Follow me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-md flex items-center justify-center hover:bg-blue-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-md flex items-center justify-center hover:bg-blue-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-md flex items-center justify-center hover:bg-blue-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-slate-300 mb-1">Name</label>
+                            <input type="text" id="name" class="w-full bg-slate-800 border border-slate-700 rounded-md px-4 py-2 text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-300 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full bg-slate-800 border border-slate-700 rounded-md px-4 py-2 text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-slate-300 mb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full bg-slate-800 border border-slate-700 rounded-md px-4 py-2 text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-slate-300 mb-1">Message</label>
+                            <textarea id="message" rows="5" class="w-full bg-slate-800 border border-slate-700 rounded-md px-4 py-2 text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Download Section -->
+    <section id="resume-download" class="py-20 bg-gradient-to-r from-slate-900 to-blue-900/50">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Download My Resume</h2>
+            <p class="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
+                Want the full details of my professional journey? Download my comprehensive resume for a deeper look at my qualifications and experience.
+            </p>
+            <a href="#" id="resume-download1" class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors text-lg">
+                Download CV (PDF)
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-8 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                        <span class="text-white font-bold">MA</span>
+                    </div>
+                    <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">Mohammed Afroze</span>
+                </div>
+                <p class="text-slate-400 text-sm">
+                    © 2023 Mohammed Afroze. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle would go here (needs HTML update)
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Form submission logic would go here
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Download button handler
+      document.getElementById("resume-download1").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent the default link behavior
+
+    const link = document.createElement("a");
+    link.href = ""; // ✅ Change to your actual PDF path
+    link.download = "Mohammed_Afroze_CV.pdf"; // ✅ Optional: name of the downloaded file
+    link.click();
+  });
+    </script>
+</body>
+</html>
+
+
+
+    
+
+   
